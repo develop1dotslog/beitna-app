@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title>My App</title>
+  <!-- Path to Framework7 Library CSS-->
+  <link rel="stylesheet" href="dist/css/framework7.ios.min.css">
+  <!-- Path to your custom app styles-->
+  <link rel="stylesheet" href="css/my-app.css">
+  <!--Framework7 Icons-->
+  <link rel="stylesheet" href="Framework7-Icons-master/css/framework7-icons.css">
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAW9Zq7sYXbZCcMm7yE3Z6H4Yi1ygL3BKA"></script>
+</head>
+<body>
+<!-- Status bar overlay for fullscreen mode-->
+<div class="statusbar-overlay"></div>
+<!-- Panels overlay-->
+<div class="panel-overlay"></div>
+<!-- Left panel with reveal effect-->
+<div class="panel panel-left panel-reveal">
+  <div class="content-block">
+    <p>Left panel content goes here</p>
+  </div>
+</div>
+<!-- Right panel with cover effect-->
+<div class="panel panel-right panel-cover">
+  <div class="content-block">
+    <p>Right panel content goes here</p>
+  </div>
+</div>
+<!-- Views, and they are tabs-->
+<!-- We need to set "toolbar-through" class on it to keep space for our tab bar-->
+<div class="views tabs toolbar-through">
+  <!-- Your first view, it is also a .tab and should have "active" class to make it visible by default-->
+  <div id="view-1" class="view view-main tab active">
+    <!-- Pages-->
+    <div class="pages navbar-fixed">
+      <div data-page="index-1" class="page">
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="center">Home</div>
+          </div>
+        </div>
+        <div class="page-content">
+
+          <div style="text-decoration:none; overflow:hidden; height:100%; width:100%; max-width:100%;" id="map">
+            <style>
+              #gmap_display img{max-width:none!important;background:none!important;}
+
+            </style>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Second view (for second wrap)-->
+  <div id="view-2" class="view tab">
+    <!-- We can make with view with navigation, let's add Top Navbar-->
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="center sliding">Messages</div>
+      </div>
+    </div>
+    <div class="pages navbar-through">
+      <div data-page="index-2" class="page">
+        <form data-search-list=".search-here" data-search-in=".item-title" class="searchbar searchbar-init">
+          <div class="searchbar-input">
+            <input type="search" placeholder="Search" class="">
+            <a href="#" class="searchbar-clear"></a>
+          </div>
+          <a href="#" class="searchbar-cancel" style="display: block; margin-right: 0px;">Cancel</a>
+        </form>
+        <div class="page-content contacts-content messages">
+          <div class="list-block searchbar-not-found">
+            <ul>
+              <li class="item-content">
+                <div class="item-inner">
+                  <div class="item-title">Nothing found</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="list-block media-list contacts-block list-block-search searchbar-found">
+            <div class="list-block search-here searchbar-found">
+              <ul>
+                <li class="contact-info">
+                  <a href="single-messages.html" class="item-link item-content">
+                    <div class="item-media"><img src="img/user-2.png" width="80"></div>
+                    <div class="item-inner">
+                      <div class="item-title-row">
+                        <div class="item-title"><strong>John Doe</strong>&nbsp;<i class="f7-icons">circle_fill</i></div>
+                        <div class="item-after">9:40am</div>
+                      </div>
+                      <div class="item-text">Lorem ipsum dolor sit amet.</div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="view-3" class="view tab">
+    <div class="pages navbar-through">
+      <div data-page="index-3" class="page">
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="center">Events</div>
+            <a href="#" class="item-link smart-select">
+              <select name="filter" multiple="multiple">
+                <optgroup label="events">
+                  <option value="indoor">Indoor</option>
+                  <option value="outdoor">Outdoor</option>
+                  <option value="free">Free</option>
+                </optgroup>
+              </select>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title"><i class="f7-icons" style="color: #fff;">filter-fill</i></div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="page-content">
+          <div class="content-block">
+            <div class="list-block media-list">
+              <ul>
+                <li>
+                  <a href="" class="item-link item-content">
+                    <div class="item-media">
+                      <img src="img/2.jpg" width="80">
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title-row">
+                        <div class="item-title">Yellow Submarine</div>
+                      </div>
+                      <div class="item-subtitle">Free</div>
+                      <div class="item-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis tellus ut turpis condimentum, ut dignissim lacus tincidunt. Cras dolor metus, ultrices condimentum sodales sit amet, pharetra sodales eros. Phasellus vel felis tellus. Mauris rutrum ligula nec dapibus feugiat. In vel dui laoreet, commodo augue id, pulvinar lacus.</div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="view-4" class="view tab">
+    <div class="pages navbar-fixed">
+      <div data-page="index-4" class="page">
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="center">Profile</div>
+          </div>
+        </div>
+        <div class="page-content prof">
+          <div class="list-block media-list">
+            <div class="item-content">
+              <div class="item-media"><img src="img/user-2.png" width="80"></div>
+              <div class="item-inner">
+                <div class="item-title-row">
+                  <div class="item-title">Yellow Submarine</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="content-block-title">About Me</div>
+          <div class="card">
+            <div class="card-content" style="background-color: #f7f7f7">
+              <ul>
+                <li>
+                  <div class="item-content">
+                    <div class="item-inner">
+                      <div class="list-block no-border">
+                        <div class="item-input">
+                          <textarea placeholder="Bio"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <section>
+            <div class="card" style="margin-top: 12%;margin-bottom: 4%;">
+              <div class="card-content">
+                <div class="list-block">
+                  <a href="#" class="item-link item-content" style="border-left: 5px #ff8870 solid;">
+                    <div class="item-media"><i class="f7-icons">social_rss_fill</i></div>
+                    <div class="item-inner">
+                      <div class="item-title">Community Blog</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="card" style="margin-bottom: 4%;">
+              <div class="card-content" >
+                <div class="list-block">
+                  <a href="#" class="item-link item-content" style="border-left: 5px #ff8870 solid;">
+                    <div class="item-media"><i class="f7-icons">settings</i></div>
+                    <div class="item-inner">
+                      <div class="item-title">Settings</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="card" style="margin-bottom: 4%;">
+              <div class="card-content">
+                <div class="list-block">
+                  <a href="#" class="item-link item-content" style="border-left: 5px #ff8870 solid;">
+                    <div class="item-media"><i class="f7-icons">email</i></div>
+                    <div class="item-inner">
+                      <div class="item-title">Invite Friends</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="card" style="margin-bottom: 4%;">
+              <div class="card-content">
+                <div class="list-block">
+                  <a href="#" class="button open-login-screen item-link item-content signout" style="border-left: 5px #ff8870 solid;">
+                    <div class="item-media"><i class="f7-icons">logout</i></div>
+                    <div class="item-inner">
+                      <div class="item-title">Sign out</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Bottom Tabbar-->
+  <div class="toolbar tabbar tabbar-labels">
+    <div class="toolbar-inner">
+      <a href="#view-1" class="tab-link active">
+        <i class="f7-icons">home</i>
+        <span class="tabbar-label">Home</span>
+      </a>
+      <a href="#view-3" class="tab-link">
+        <i class="f7-icons">filter-fill</i>
+        <span class="tabbar-label">Filter Events</span>
+      </a>
+      <a href="#view-2" class="tab-link">
+        <i class="f7-icons">collection_fill</i>
+        <span class="tabbar-label">Inbox</span>
+      </a>
+      <a href="#view-4" class="tab-link">
+        <i class="f7-icons">person_fill</i>
+        <span class="tabbar-label">Profile</span>
+      </a>
+    </div>
+  </div>
+  <!--Login Modal-->
+  <div class="login-screen login">
+    <div class="view">
+      <div class="page">
+        <div class="page-content login-screen-content">
+          <div class="login-screen-title">Framework7</div>
+          <form method="post" action="">
+            <div class="list-block">
+              <ul>
+                <li class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title label">Username</div>
+                    <div class="item-input">
+                      <input type="text" name="username" id="username" placeholder="Your username">
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title label">Password</div>
+                    <div class="item-input">
+                      <input type="password" name="password" id="password" placeholder="Your password">
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="list-block">
+              <ul>
+                <li><button  id="login" class="item-link list-button">Sign in</button></li>
+                <li><button  id="signup" class="item-link list-button">Sign up</button></li>
+              </ul>
+              <div class="list-block-label error">Some text about login information.<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="signup" >
+    <div class="view">
+      <div class="page">
+        <div class="page-content login-screen-content">
+          <div class="login-screen-title">Framework7</div>
+          <form method="post" action="">
+            <div class="list-block">
+              <ul>
+                <li class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title label">Username</div>
+                    <div class="item-input">
+                      <input type="text" name="username" id="uname" placeholder="Your username">
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title label">Email</div>
+                    <div class="item-input">
+                      <input type="text" name="email" id="email"  placeholder="Your Email">
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title label">Password</div>
+                    <div class="item-input">
+                      <input type="password" name="password" id="pass" placeholder="Your password">
+                    </div>
+                  </div>
+                </li>
+                  <li class="item-content">
+                      <div class="item-inner">
+                          <div class="item-title label">Confirm Password</div>
+                          <div class="item-input">
+                              <input type="password" name="confirm_password" id="confirm_pass" placeholder="Confirm password">
+                          </div>
+                      </div>
+                  </li>
+              </ul>
+            </div>
+            <div class="list-block">
+              <ul>
+                <li><button  class="item-link list-button" id="signup-btn">Sign up</button></li>
+              </ul>
+              <div class="list-block-label error">Some text about login information.<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+<!-- Path to Framework7 Library JS-->
+<script type="text/javascript" src="dist/js/framework7.min.js"></script>
+<!-- Path to your app js-->
+<script type="text/javascript" src="js/my-app.js"></script>
+
+
+<script type="text/javascript">
+
+    var username;
+    var from;
+
+
+
+    $(document).ready(function () {
+
+        $.post('http://localhost/laravel_beitna/public/postGetData',function (data) {
+
+            gmarkers = [];
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: new google.maps.LatLng(25.3548, 51.1839),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
+            var infowindow = new google.maps.InfoWindow();
+
+
+            function createMarker(latlng, html) {
+                var marker = new google.maps.Marker({
+                    position: latlng,
+                    map: map,
+                    draggable: true
+                });
+
+                google.maps.event.addListener(marker, 'click', function () {
+                    infowindow.setContent(html);
+                    infowindow.open(map, marker);
+                });
+                return marker;
+            }
+
+
+            for (var i = 0; i < data.length; i++) {
+
+
+                if(data[i].event_category == 1){
+
+                    data[i].event_category ="option 1"
+
+
+                }
+                if(data[i].event_category == 2){
+
+                    data[i].event_category ="option 2"
+
+
+                }
+                if(data[i].event_category == 3){
+
+                    data[i].event_category ="option 3"
+
+
+                }
+                if(data[i].event_category == 4){
+
+                    data[i].event_category ="option 4"
+
+
+                }
+
+
+                if(data[i].event_type == 1){
+
+                    data[i].event_type ="option 1"
+
+
+                }
+                if(data[i].event_type == 2){
+
+                    data[i].event_type ="option 2"
+
+
+                }
+                if(data[i].event_type == 3){
+
+                    data[i].event_type ="option 3"
+
+
+                }
+                if(data[i].event_type == 4){
+
+                    data[i].event_type ="option 4"
+
+
+                }
+                    createMarker(new google.maps.LatLng(data[i].longitude, data[i].latitude),"Event Name: "+data[i].event_name+"<br>Event Category: "+data[i].event_category  +"<br>Event Type :"+data[i].event_type + "<br>Event Image: <img src='http://localhost/laravel_beitna/public/images/event_pic/"+data[i].event_image +"'>"  );
+
+
+
+            }
+        });
+
+        if (localStorage.getItem("customer_id") === null) {
+
+            $('.login-screen').addClass('modal-in');
+
+        }
+
+        $('#login').on('click',function (e) {
+
+            username = $('#username').val();
+            var password = $('#password').val();
+            e.preventDefault();
+
+            url = 'http://localhost/laravel_beitna/public/postCustomerLogin';
+            $.post(url,{username:username,password:password},function (data) {
+
+                if(data != 'Error')
+                {
+                    window.localStorage.setItem("customer_id",data.id);
+
+                    $('.login-screen').removeClass('modal-in');
+                    $('.login-screen').css('display','none');
+                    $('.login-screen').addClass('modal-out');
+                }
+                else
+                {
+
+                    alert(data);
+                }
+
+
+            });
+
+
+        });
+
+        $('.signout').click(function (e) {
+
+            e.preventDefault();
+
+            localStorage.removeItem('customer_id');
+
+        });
+
+
+        $('#signup-btn').on('click',function (e) {
+            e.preventDefault();
+
+            var uname = $('#uname').val();
+            var pass = $('#pass').val();
+            var email = $('#email').val();
+            var confirm_password = $('#confirm_pass').val();
+
+
+            $.post('http://localhost/laravel_beitna/public/postAppSignup',{username:uname, password:pass, email:email,confirm_password:confirm_password},function (data) {
+
+
+             });
+    });
+
+
+    });
+
+
+
+
+
+    var myApp = new Framework7();
+
+    var $$ = Dom7;
+
+    $$(document).on('page:init', '.page[data-page="single-messages"]', function (e) {
+
+
+        setInterval(function () {
+
+            $.post('http://localhost/laravel_beitna/public/getNewAppMessages',function (data) {
+                // console.log(data);
+
+
+
+                for (var i = 0; i < data.length; i++) {
+                    if(data[i].app == 1 ){
+
+                        if (data[i].sender == 'C') {
+
+                            $('.messages').append('<div class="message message-sent">' +
+                                '  <div class="message-text">' + data[i].message +
+                                '</div> </div>');
+
+
+                        } else {
+                            $('.messages').append('<div class="message message-received message-with-avatar message-first message-last message-with-tail"> <div class="message-name">Kate Johnson</div>' +
+                                '<div class="message-text to">' + data[i].message +
+                                '</div><div style="background-image:url(http://lorempixel.com/200/200/people/9)" class="message-avatar"></div></div>');
+
+                        }
+
+                    }
+
+                    setZero();
+                }
+
+            });
+
+        },500);
+
+
+        function setZero() {
+
+            $.post('http://localhost/laravel_beitna/public/setAppZero');
+
+        }
+
+
+
+        $.post('http://localhost/laravel_beitna/public/getAllAppMessages',function (data) {
+
+
+            for(var i = 0; i<data.length;i++) {
+
+                if (data[i].sender == 'C'){
+
+                    $('.messages').append('<div class="message message-sent">' +
+                        '  <div class="message-text">' + data[i].message +
+                        '</div> </div>');
+
+                }else
+                {
+                    $('.messages').append('<div class="message message-received message-with-avatar message-first message-last message-with-tail"> <div class="message-name">Kate Johnson</div>' +
+                        '<div class="message-text to">' + data[i].message +
+                        '</div><div style="background-image:url(http://lorempixel.com/200/200/people/9)" class="message-avatar"></div></div>');
+                }
+
+            }
+
+
+        });
+
+
+
+
+        from = window.localStorage.getItem("from");
+        //alert();
+        $('#send').on('click',function () {
+
+            e.preventDefault();
+            var message = $('#message').val();
+            if(message !== "" )
+            {
+                $.post('http://localhost/laravel_beitna/public/postAppMessage',{message:message,to:1,from:1,state:'S'},function () {
+
+
+                    $('.messages').append('<div class="message message-sent">' +
+                        '  <div class="message-text">' + message +
+                        '</div> </div>');
+                    $('#message').val("");
+                    // console.log(data);
+
+                });
+            }
+
+        });
+
+
+    });
+
+</script>
+
+
+</body>
+</html>
